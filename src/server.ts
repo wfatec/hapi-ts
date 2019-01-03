@@ -1,16 +1,16 @@
 'use strict'
 
-// import * as hapi from 'hapi';
-const hapi = require('hapi');
-
-const server = new hapi.Server({
+import * as hapi from 'hapi';
+// const hapi = require('hapi');
+// const server: hapi.Server = new hapi.Server()
+const server: hapi.Server = new hapi.Server({
     port: 3000
 })
 
 server.route({
     method: 'GET',
     path: '/',
-    handler: (request, h) => {
+    handler: (request: hapi.Request, h) => {
 
         return 'Hello, world!';
     }
