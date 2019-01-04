@@ -10,9 +10,9 @@ const server: hapi.Server = new hapi.Server({
 server.route({
     method: 'GET',
     path: '/',
-    handler: (request: hapi.Request, h) => {
+    handler: (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
 
-        return 'Hello, world!';
+        return 'Hello, world!!';
     }
 });
 
