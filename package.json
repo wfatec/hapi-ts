@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/wfatec/hapi-ts#readme",
   "dependencies": {
-    "hapi": "^17.8.1"
+    "hapi": "^17.8.1",
+    "pg": "^7.7.1",
+    "reflect-metadata": "^0.1.12",
+    "typeorm": "^0.2.11"
   },
   "devDependencies": {
-    "@types/node": "^10.12.18",
     "@types/hapi": "^17.8.2",
+    "@types/node": "^10.12.18",
     "nodemon": "^1.18.9",
     "typescript": "^3.2.2"
   }
