@@ -9,7 +9,10 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "noImplicitAny": false,
-    "lib": [ "es2015" ] 
+    "lib": [
+      "es2016",
+      "dom"
+    ] 
   },
   "includes" : [
     "src/**/*.ts"
