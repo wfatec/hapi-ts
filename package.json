@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/wfatec/hapi-ts#readme",
   "dependencies": {
+    "blipp": "^3.1.2",
+    "glue": "^5.0.0",
     "hapi": "^17.8.1",
     "pg": "^7.7.1",
     "reflect-metadata": "^0.1.12",
