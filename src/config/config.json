@@ -1,0 +1,24 @@
+{
+    "server": {
+        "$filter": "env",
+        "production":[
+            {
+                "port": 80
+            }
+        ],
+        "$default":[
+            {
+                "port": 3000
+            }
+        ]
+    },
+    "register": {
+        "plugins": [
+            { "plugin": "blipp", "options": { "showAuth": true } },
+            { "plugin": "./plugins/routes" }
+        ],
+        "options": {
+            "once": true
+        }
+    }
+}
