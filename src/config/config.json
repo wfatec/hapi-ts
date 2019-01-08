@@ -1,24 +1,57 @@
 {
     "server": {
-        "$filter": "env",
-        "production":[
-            {
+        "server": {
+            "$filter": "env",
+            "production":{
                 "port": 80
             }
-        ],
-        "$default":[
-            {
+            ,
+            "$default":{
                 "port": 3000
             }
-        ]
-    },
-    "register": {
-        "plugins": [
-            { "plugin": "blipp", "options": { "showAuth": true } },
-            { "plugin": "./plugins/routes" }
-        ],
-        "options": {
-            "once": true
+        },
+        "register": {
+            "plugins": [
+                { "plugin": "blipp", "options": { "showAuth": true } },
+                "./plugins/routes"
+            ],
+            "options": {
+                "once": true
+            }
         }
+    },
+    "db": {
+        "$filter": { "$env": "DB_TYPE" },
+        "postgres": {
+            "type": "postgres",
+            "host": {
+                "$env": "POSTGRES_HOST",
+                "$default": "localhost"
+            },
+            "port": {
+                "$env": "POSTGRES_PORT",
+                "$default": "5432"
+            },
+            "username": {
+                "$env": "POSTGRES_USERNAME",
+                "$default": "postgres"
+            },
+            "password": {
+                "$env": "POSTGRES_PASSWORD",
+                "$default": "123456"
+            },
+            "database": {
+                "$env": "POSTGRES_DB_NAME",
+                "$default": "test"
+            }
+        },
+        "$default": {
+            "host": "127.0.0.1",
+            "port": 3306,
+            "user": "dev",
+            "password": "password",
+            "database": "dev_db"
+        }
+        
     }
 }

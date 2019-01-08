@@ -3,8 +3,8 @@
 import * as hapi from 'hapi';
 import {Entry} from '../models/entry';
 
-export default {
-    name: 'myPlugin',
+exports.plugin = {
+    name: 'routes',
     version: '1.0.0',
     register: async function (server, options) {
 
