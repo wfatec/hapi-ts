@@ -14,6 +14,15 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
+            path: '/',
+            handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
+
+                return 'Hello World!';
+            }
+        });
+
+        server.route({
+            method: 'GET',
             path: '/entry/{id}',
             handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
                 const entryRepo = server.app.dbConnection.getRepository(Entry);
