@@ -1,6 +1,8 @@
 'use strict';
 
 import * as hapi from 'hapi';
+import * as Joi from 'joi';
+import * as Boom from 'boom';
 import {Entry} from '../models/entry';
 
 exports.plugin = {
@@ -12,11 +14,19 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/',
+            path: '/entry/{id}',
             handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
                 const entryRepo = server.app.dbConnection.getRepository(Entry);
-                const entries = await entryRepo.find();
-                return entries;
+                const entries = await entryRepo.findOne(request.params.id);
+
+                return entries||Boom.notFound('The entry id is not found!');
+            },
+            options: {
+                validate: {
+                    params: {
+                        id: Joi.number().min(1)
+                    }
+                },
             }
         });
         
