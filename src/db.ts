@@ -1,6 +1,6 @@
 import * as confidence from "confidence";
 import {createConnection} from "typeorm";
-import * as config from './/config/config.json';
+import * as config from './config/config.json';
 import {Entry} from './models/entry';
 
 export default async () => {

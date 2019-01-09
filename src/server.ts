@@ -5,7 +5,8 @@ import * as Glue from "glue";
 import * as dotenv from 'dotenv';
 import * as confidence from "confidence";
 import createDBConnection from './db';
-import * as config from './config/config.json';
+// import * as config from './config/config.json';
+import config from './config/config';
 
 // 设置环境变量
 dotenv.config();
