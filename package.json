@@ -34,6 +34,7 @@
     "vision": "^5.4.4"
   },
   "devDependencies": {
+    "@types/confidence": "^1.4.30",
     "@types/hapi": "^17.8.2",
     "@types/node": "^10.12.18",
     "code": "^5.2.4",

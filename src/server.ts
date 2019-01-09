@@ -5,14 +5,14 @@ import * as Glue from "glue";
 import * as dotenv from 'dotenv';
 import * as confidence from "confidence";
 import createDBConnection from './db';
-// import * as config from './config/config.json';
 import config from './config/config';
+import { Server } from "hapi";
 
 // 设置环境变量
 dotenv.config();
 
-const store = new confidence.Store(config);
-const manifest = store.get("/server", { env: process.env.NODE_ENV })
+const store: confidence.Store = new confidence.Store(config);
+const manifest:object = store.get("/server", { env: process.env.NODE_ENV })
 
 const options = {
     relativeTo: __dirname
@@ -21,9 +21,9 @@ const options = {
 const init = async () => {
     const connection = await createDBConnection();
 
-    const server = await Glue.compose(manifest, options);
+    const server:Server = await Glue.compose(manifest, options);
 
-    server.app.dbConnection = connection;
+    (server.app as any).dbConnection = connection;
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`)
