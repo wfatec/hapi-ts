@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ts --exec \"npm run compile\"",
+    "start": "nodemon -e ts --exec \"npm run build:ts && npm run server \"",
     "compile": "tsc && node ./build/server.js",
+    "server": "cross-env NODE_ENV=development node ./build/server.js",
+    "clean": "rimraf -rf ./build",
+    "build": "npm run clean && npm run build:ts",
+    "build:ts": "tsc",
     "test": "lab --assert code --coverage --leaks"
   },
   "repository": {
@@ -38,8 +42,10 @@
     "@types/hapi": "^17.8.2",
     "@types/node": "^10.12.18",
     "code": "^5.2.4",
+    "cross-env": "^5.2.0",
     "lab": "^18.0.1",
     "nodemon": "^1.18.9",
+    "rm": "^0.1.8",
     "typescript": "^3.2.2"
   }
 }
