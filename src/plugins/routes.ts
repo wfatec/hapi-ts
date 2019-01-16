@@ -15,12 +15,11 @@ exports.plugin = {
         server.route({
             method: 'GET',
             path: '/',
-            
-            options: {
-                handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
+            handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
 
-                    return 'Hello World!';
-                },
+                return 'Hello World!';
+            },
+            options: {
                 tags: ['api'],
             }
         });
@@ -35,6 +34,7 @@ exports.plugin = {
                 return entries||Boom.notFound('The entry id is not found!');
             },
             options: {
+                tags: ['api'],
                 validate: {
                     params: {
                         id: Joi.number().min(1)
@@ -60,6 +60,9 @@ exports.plugin = {
                 await entryRepo.save(newEntry);
         
                 return "New post created"
+            },
+            options: {
+                tags: ['api'],
             }
         });
     }

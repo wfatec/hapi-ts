@@ -3,7 +3,8 @@ import * as Inert from 'inert';
 import * as Vision from 'vision';
 import * as HapiSwagger from 'hapi-swagger';
 import * as Routes from "../plugins/routes";
-import * as Pack from "../../package.json";
+// import * as Pack from "../../package.json"; //not valid
+const Pack = require('../../package');
 
 const swaggerOptions = {
     info: {
