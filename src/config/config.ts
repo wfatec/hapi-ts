@@ -1,59 +1,75 @@
 import * as Blipp from "blipp";
+import * as Inert from 'inert';
+import * as Vision from 'vision';
+import * as HapiSwagger from 'hapi-swagger';
 import * as Routes from "../plugins/routes";
+import * as Pack from "../../package.json";
+
+const swaggerOptions = {
+    info: {
+        title: 'Test API Documentation',
+        version: Pack.version,
+    },
+};
 
 export default {
-    "server": {
-        "server": {
-            "$filter": "env",
-            "production":{
-                "port": 80
-            }
-            ,
-            "$default":{
-                "port": 3000
+    server: {
+        server: {
+            $filter: "env",
+            production:{
+                port: 80
+            },
+            $default:{
+                port: 3000
             }
         },
-        "register": {
-            "plugins": [
-                { "plugin": Blipp, "options": { "showAuth": true } },
-                { "plugin": Routes },
+        register: {
+            plugins: [
+                Inert,
+                Vision,
+                {
+                    plugin: HapiSwagger,
+                    options: swaggerOptions
+                },
+                { plugin: Blipp, options: { showAuth: true } },
+                { plugin: Routes },
             ],
-            "options": {
-                "once": true
+            options: {
+                once: true
             }
         }
     },
-    "db": {
-        "$filter": { "$env": "DB_TYPE" },
-        "postgres": {
-            "type": "postgres",
-            "host": {
-                "$env": "POSTGRES_HOST",
-                "$default": "localhost"
+    db: {
+        $filter: { $env: "DB_TYPE" },
+        postgres: {
+            type: "postgres",
+            host: {
+                $env: "POSTGRES_HOST",
+                $default: "localhost"
             },
-            "port": {
-                "$env": "POSTGRES_PORT",
-                "$default": "5432"
+            port: {
+                $env: "POSTGRES_PORT",
+                $default: "5432"
             },
-            "username": {
-                "$env": "POSTGRES_USERNAME",
-                "$default": "postgres"
+            username: {
+                $env: "POSTGRES_USERNAME",
+                $default: "postgres"
             },
-            "password": {
-                "$env": "POSTGRES_PASSWORD",
-                "$default": "123456"
+            password: {
+                $env: "POSTGRES_PASSWORD",
+                $default: "123456"
             },
-            "database": {
-                "$env": "POSTGRES_DB_NAME",
-                "$default": "test"
+            database: {
+                $env: "POSTGRES_DB_NAME",
+                $default: "test"
             }
         },
-        "$default": {
-            "host": "127.0.0.1",
-            "port": 3306,
-            "user": "dev",
-            "password": "password",
-            "database": "dev_db"
+        $default: {
+            host: "127.0.0.1",
+            port: 3306,
+            user: "dev",
+            password: "password",
+            database: "dev_db"
         }
         
     }

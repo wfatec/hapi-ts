@@ -15,9 +15,13 @@ exports.plugin = {
         server.route({
             method: 'GET',
             path: '/',
-            handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
+            
+            options: {
+                handler: async (request: hapi.Request, h: hapi.HandlerDecorationMethod) => {
 
-                return 'Hello World!';
+                    return 'Hello World!';
+                },
+                tags: ['api'],
             }
         });
 
